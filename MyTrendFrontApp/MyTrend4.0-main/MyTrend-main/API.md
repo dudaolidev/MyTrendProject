@@ -1,0 +1,1 @@
+"@react-navigation/native" Cada uma dessas telas é registrada no navegador de pilha Stack.Navigator

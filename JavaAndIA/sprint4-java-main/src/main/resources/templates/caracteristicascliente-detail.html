@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Detalhes da Característica do Cliente</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Detalhes da Característica do Cliente</h1>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>ID:</strong> <span th:text="${caracteristicasCliente.id}"></span></p>
+            <p><strong>Biotipo:</strong> <span th:text="${caracteristicasCliente.biotipo}"></span></p>
+            <p><strong>Colorometria:</strong> <span th:text="${caracteristicasCliente.colorometria}"></span></p>
+            <p><strong>Estilo de Preferência:</strong> <span th:text="${caracteristicasCliente.estiloPreferencia}"></span></p>
+        </div>
+    </div>
+    <a href="/caracteristicasCliente/lista" class="btn btn-secondary mt-3">Voltar para a lista</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title th:text="${caracteristicasCliente.id == null ? 'Criar Nova Característica' : 'Editar Característica'}">Formulário de Características do Cliente</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${caracteristicasCliente.id == null ? 'Criar Nova Característica' : 'Editar Característica'}"></h1>
+    <form th:action="@{${caracteristicasCliente.id == null ? '/caracteristicasCliente/create' : '/caracteristicasCliente/update/' + caracteristicasCliente.id}}"
+          th:object="${caracteristicasCliente}" method="post">
+        <div class="form-group">
+            <label for="biotipo">Biotipo:</label>
+            <input type="text" id="biotipo" th:field="*{biotipo}" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="colorometria">Colorometria:</label>
+            <input type="text" id="colorometria" th:field="*{colorometria}" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="estiloPreferencia">Estilo de Preferência:</label>
+            <input type="text" id="estiloPreferencia" th:field="*{estiloPreferencia}" class="form-control" required />
+        </div>
+        <button type="submit" th:text="${caracteristicasCliente.id == null ? 'Criar' : 'Atualizar'}" class="btn btn-primary">Salvar</button>
+    </form>
+    <a href="/caracteristicasCliente/lista" class="btn btn-secondary mt-3">Voltar para a lista</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Link para o CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Gerenciamento de Endereços</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Projeto Sprint 3</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/api/endereco/buscar">Endereços</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api/caracteristicasCliente/buscar">Características dos Clientes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="display-4">Lista de Endereços</h1>
+    <p>Endereços cadastrados no sistema:</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Logradouro</th>
+            <th>Número</th>
+            <th>Complemento</th>
+            <th>CEP</th>
+            <th>Cidade</th>
+            <th>Bairro</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody id="enderecos-table">
+        <!-- Dados serão preenchidos via JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Script para consumir a API e preencher a tabela -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/endereco/buscar')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('enderecos-table');
+                data.forEach(endereco => {
+                    const row = `<tr>
+                        <td>${endereco.id}</td>
+                        <td>${endereco.logradouro}</td>
+                        <td>${endereco.numero}</td>
+                        <td>${endereco.complemento}</td>
+                        <td>${endereco.cep}</td>
+                        <td>${endereco.cidade}</td>
+                        <td>${endereco.bairro}</td>
+                        <td>${endereco.estado}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error('Erro ao carregar endereços:', error));
+    });
+</script>
+
+<!-- Scripts do Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
